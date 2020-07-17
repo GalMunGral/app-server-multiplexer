@@ -1,35 +1,47 @@
+const http = require('http');
+const { exec } = require('child_process');
 const express = require('express');
-const fetch = require('node-fetch');
+const cookieParser = require('cookie-parser');
+const { apps } = require('./apps/manifest');
 
-const app = express();
+for (let { directory, command } of apps) {
+  exec(`cd ${directory} && ${command}`, (error, stdout, stderr) => {
+    if (error) console.log(error);
+    stdout.pipe(process.stdout);
+    stderr.pipe(process.stderr);
+  });
+}
 
-app.get('/proxy/:url', async (req, res) => {
-  const fetchURL = encodeURI(decodeURIComponent(req.params.url));
-  // console.log('Fetching', url)
-  try {
-    const response = await fetch(fetchURL, {
-      headers: {
-        Range: req.headers.range
-      },
-      timeout: 5000
+const server = express();
+
+server.set('view engine', 'ejs');
+
+server.use(cookieParser());
+
+server.get('/___index', (_, res) => {
+  res.render('index', { apps });
+});
+
+server.use((req, res, next) => {  
+  if (req.cookies.PORT) {
+    const request = http.request({
+      method: req.method,
+      port: req.cookies.PORT,
+      path: req.url,
+      headers: req.headers,
     });
-    res.set('Content-Type', response.headers.get('Content-Type'));
-    res.status(response.status);
-    let type;
-    if ((type = response.headers.get('Content-Type')) && (type.includes('text') || type.includes('javascript'))) {
-      let text = await response.text();
-      const url = new URL(req.params.url);
-      text = text.replace(new RegExp(url.host, 'g'), 'localhost:8080');
-      res.send(text);
-    } else {
-      response.body.pipe(res);  
-    }
-  } catch (error) {
-    console.log(error);
-    res.send();
+    request.on('response', response => {
+      res.writeHead(
+        response.statusCode,
+        response.statusMessage,
+        { ...response.headers, 'cache-control' : 'no-store' }
+      );
+      response.pipe(res);
+    });
+    req.pipe(request);
+  } else {
+    next();
   }
-})
+});
 
-app.use(express.static('public'));
-
-app.listen(8080, () => console.log('Listening!'));
+server.listen(8080, () => console.log('Listening on 8080'));
