@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+:host:last-child {
+  word-break: break-word;
+}
+.main {
+  margin: 30px 20px 0 30px;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,35 @@
+<img class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/archive/e/e1/20170902213321%21YouTube_play_buttom_icon_%282013-2017%29.svg/120px-YouTube_play_buttom_icon_%282013-2017%29.svg.png">
+<div class="logo-text">NoTube</div>
+<div class="search-bar" fxFlex="grow" fxLayout="row" fxLayoutAlign="center center">
+  <input fxFlex="0 1 500px" type="text">
+  <button fxFlex="0 0 auto" class="search-bar">
+    <i class="material-icons">search</i>
+  </button>
+</div>
+<i class="material-icons-outlined profile clickable">wb_sunny</i>
+<i [matMenuTriggerFor]="menu"
+  (mouseenter)="activate()" 
+  (mouseleave)="deactivate()" 
+  class="material-icons{{activated ? '' : '-outlined'}} profile clickable">
+  more_horiz
+</i>
+
+<!-- Drop-down menu -->
+<mat-menu #menu="matMenu">
+  <a routerLink="/home" mat-menu-item>
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </a>
+  <a routerLink="/subscriptions" mat-menu-item>
+    <mat-icon>subscriptions</mat-icon>
+    <span>Subscriptions</span>
+  </a>
+  <a routerLink="/test" mat-menu-item>
+    <mat-icon>account_box</mat-icon>
+    <span>Account</span>
+  </a>
+  <a routerLink="/test" mat-menu-item>
+    <mat-icon>settings</mat-icon>
+    <span>Settings</span>
+  </a>
+</mat-menu>

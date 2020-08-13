@@ -1,0 +1,11 @@
+  <form [formGroup]="commentForm" (ngSubmit)="submit()">
+    <mat-form-field class="full-width" (focusin)="startTyping()">
+      <input matInput type="text" formControlName="content">
+      <mat-icon matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <div *ngIf="typing" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <button type="button" mat-button (click)="cancel()">CANCEL</button>
+      <button type="submit" mat-flat-button color="primary"
+        [disabled]="!commentForm.value.content || commentForm.value.content.length === 0">COMMENT</button>
+    </div>
+  </form>

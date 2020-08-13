@@ -1,0 +1,5 @@
+<div *ngIf="comments">
+  <p id="comment-count">{{comments.length}} comments</p>
+  <app-comment-input></app-comment-input>
+  <app-comment-list [comments]="comments"></app-comment-list>
+</div>

@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  width: 100%;
+  align-self: left;
+}
+.title {
+  font-size: 20px;
+  margin: 10px 0; 
+}
+mat-icon {
+  cursor: pointer;
+  &:hover {
+    color: #333333;
+  }
+}
+.detail {
+  margin: 0;
+  height: 40px;
+  color: gray;
+  font-size: 15px;
+}

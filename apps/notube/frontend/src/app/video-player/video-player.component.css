@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+video {
+  width: 100%;
+  outline: none;
+}
+
+app-video-description {
+  margin: 0 10px;
+}

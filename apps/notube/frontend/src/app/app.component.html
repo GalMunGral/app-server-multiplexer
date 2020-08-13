@@ -1,0 +1,14 @@
+<div class="container" fxLayout="column">
+  <mat-toolbar fxFlex="0 0 50px" fxLayout="row">
+    <mat-icon class="clickable" (click)="toggleSideNav()">menu</mat-icon>
+    <app-toolbar fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="start center"></app-toolbar>
+  </mat-toolbar>
+  <mat-sidenav-container fxFlex="grow">
+    <mat-sidenav mode="side" [opened]="sideNavOpened">
+      <app-side-menu></app-side-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

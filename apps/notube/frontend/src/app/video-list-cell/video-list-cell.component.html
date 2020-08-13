@@ -1,0 +1,18 @@
+<a class="list-cell" routerLink="/page-not-found" >
+  <div class="label" *ngIf="index === 0">Up next</div>
+  <div fxLayout="row"
+    fxLayoutAlign="center center"
+    fxLayoutGap="10px">
+    <div class="thumbnail" fxFlex="0 0 150px"></div>
+
+    <div fxFlexAlign="stretch" fxFlex="auto"
+      fxLayout="column" fxLayoutAlign="start start"> 
+      <div class="title"><b>{{video.title}}</b></div>
+      <div fxLayout="row" fxLayoutAlign="start center" class="subtitle">
+        <span>a fake channel</span>
+        <mat-icon>check_circle</mat-icon>
+      </div>
+      <div class="subtitle">{{video.numOfViews}} views</div>
+    </div>
+  </div>
+</a>

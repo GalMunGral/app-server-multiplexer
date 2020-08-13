@@ -1,0 +1,45 @@
+$nav-height: 30px;
+$shadow-color: #DDDDDD;
+$border-radius: 2px;
+
+img.logo {
+  max-height: $nav-height;
+  margin: 0 15px;
+}
+
+.profile {
+  max-height: $nav-height;
+  border-radius: $nav-height / 2;
+  margin: 0 5px;
+}
+
+.search-bar {
+  margin: 0 15px;
+  & * {
+    outline: none;
+  }
+  input {
+    margin: 0;
+    height: $nav-height;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    border: 2px $shadow-color solid;
+    border-right: none;
+    box-shadow: inset 0 0 5px 0 $shadow-color;
+    padding: 0 10px;
+    line-height: 100%;
+    font-size: 80%;  
+  }
+  button {
+    height: $nav-height;
+    width: 60px;
+    color: gray;
+    margin: 0;
+    border: 2px solid $shadow-color;
+    background: lighten($shadow-color, 10%);
+    line-height: 100%;
+    i {
+      font-size: $nav-height - 10px;
+    }
+  }
+}

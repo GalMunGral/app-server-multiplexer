@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  width: 100%;
+/*   max-width: 850px; */
+  align-self: flex-end;
+  margin-bottom: 50px;
+}
+#comment-count {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
